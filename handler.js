@@ -40,36 +40,22 @@ module.exports.resize = (event, context, callback) => {
       return false;
   }
 
-  //////////////////////////////////////////////////
-  /* 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
-  */
-  ////////////////////////////////////////////////////7
 };
 
 
 module.exports.resizeApi = (event, context, callback) => {
-
-
   console.log(JSON.stringify(event));
   console.log(JSON.stringify(context));
+  // validate parmas image
+  var uriImage = event.queryStringParameters.image;
+  uriImage = decodeURI(uriImage); 
+  if (!uriImage.trim()) {
+    callback(new Error('params image required'));
+  }
+  //console.log(JSON.stringify(uriImage));
 
-
-  //callback(new Error('[404] Not found'));
-  
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully 5!',
-      input: event,
-    }),
-  };
-  callback(null, response);
-  return;
-
-  /*var srcBucket = event.Records[0].s3.bucket.name;
-  var srcKey    = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
+  var srcBucket = "libero-media-v";
+  var srcKey    = decodeURIComponent(uriImage.replace(/\+/g, " "));
   countSend = 0;
   countProc = 0;
   var dstBucket = "libero-media";
@@ -82,22 +68,38 @@ module.exports.resizeApi = (event, context, callback) => {
 
   // Detectar el tipo de imagen
   var typeMatch = srcKey.match(/\.([^.]*)$/);
-
+  
   if (!typeMatch) {
       console.error('El tipo no coincide con una imagen válida para el key: ' + srcKey);
       context.succeed("No se procesa");
-      return;
+      return callback(new Error('El tipo no coincide con una imagen válida para el key: ' + srcKey)); 
   }
 
   var imageType = typeMatch[1].toLowerCase();
-
+  //console.log(JSON.stringify(imageType));
+  
   if (imageType == "jpg" || imageType == "jpeg" || imageType == "png") {
-      return uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context);
+      uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context);
   } else {
       console.log("Formato no soportado.");
       context.succeed("No se ejecuta nada");
-      return false;
-  }*/
+      return callback(new Error("Formato no soportado.")); 
+      //return false;
+  }
+
+  const response = {
+        statusCode: 200,
+        body: JSON.stringify({
+        message: 'Imagen cargada',
+        input: event,
+        context : context
+        }),
+    };
+  
+    return callback(null, response);
+
+  
+  
 
 };
 
@@ -153,11 +155,11 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
                             });
                     })(dstKey);
                 }
-            }
+            }     
         }
     });
 
-    return true;
+     return true;
 }
 
 function callbackUploadS3(buffer, bucket, dstKey, contentType, context) {

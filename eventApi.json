@@ -4,7 +4,9 @@
     "path": "/resize",
     "httpMethod": "GET",
     "headers": null,
-    "queryStringParameters": null,
+    "queryStringParameters": {
+      "image": "libero/imagen/2016/01/22/23081870.jpg"
+    },
     "pathParameters": null,
     "stageVariables": null,
     "requestContext": {
