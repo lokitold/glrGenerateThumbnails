@@ -12,14 +12,14 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/glrGenerateThumbnails/dev/1480301996948-2016-11-28T02:59:56.948Z/glrGenerateThumbnails.zip"
+          "S3Key": "serverless/glrGenerateThumbnails/dev/1480305445620-2016-11-28T03:57:25.620Z/glrGenerateThumbnails.zip"
         },
         "FunctionName": "glrGenerateThumbnails-dev-resize",
         "Handler": "handler.resize",
         "MemorySize": 128,
         "Role": "arn:aws:iam::543745842878:role/lambda_basic_execution",
         "Runtime": "nodejs4.3",
-        "Timeout": 6,
+        "Timeout": 30,
         "Description": "resize images libero"
       }
     }
