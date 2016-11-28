@@ -86,7 +86,8 @@ module.exports.resizeApi = (event, context, callback) => {
   //console.log(JSON.stringify(imageType));
 
   if (imageType == "jpg" || imageType == "jpeg" || imageType == "png") {
-      uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context);
+      uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,callback);
+      return;
   } else {
       console.log("Formato no soportado.");
       context.succeed("No se ejecuta nada");
@@ -202,4 +203,73 @@ function sendSNS(TopicArn, Message , callback) {
         }
         callback(data);
     });
+}
+
+function uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,callback)
+{
+    var params = {
+        Bucket: srcBucket,
+        Key: srcKey
+    };
+    var thumb_sizes = [
+        {key:"medium", width: 439, height: 247},
+        {key:"small",  width: 224, height: 126},
+        {key:"normal", width: 604, height: 340},
+        {key:"large",  width: 825, height: 464},
+        {key:"xlarge", width: 1200,height: 675},
+        {key:"thumb",  width: 88,  height: 50},
+        {key:"xsmall", width: 71,  height: 40}
+    ];
+    s3.getObject(params, function(err, response) {
+        if (err) {
+            //console.log(err);
+            console.log('hola');
+            var responseErrorImagen = {
+                statusCode: 500,
+                body: JSON.stringify({
+                    message: 'error cargando imagen',
+                    //input: event,
+                    //context : context
+                }),
+            };
+            callback(null,responseErrorImagen);
+        } else {
+            var kb = response.ContentLength / 1024;
+            if (kb > 800) {
+                var item = {"srcBucket":srcBucket, "dstBucket":dstBucket, "srcKey":srcKey, "imageType":imageType};
+                sendSNS(TOPIC_ARN, item,
+                    function(data) {
+                        context.succeed("Proceso SNS Lambda: CMS_THUMB_SNS");
+
+                    });
+            } else {
+                for (var k in thumb_sizes) {
+                    var dstKey = thumb_sizes[k].key + '/' + srcKey;
+                    (function(dstKey) {
+                        var ima = gm(response.Body);
+                        if (imageType == "png") {
+                            ima.flatten().setFormat("jpg");
+                        }
+                        countSend++;
+                        ima.resize(null, thumb_sizes[k].height)
+                            .gravity('Center')
+                            .quality(98)
+                            .borderColor("rgb(0,0,0)")
+                            .border(300, 0)
+                            .crop(thumb_sizes[k].width, thumb_sizes[k].height)
+                            .toBuffer(function(err, buffer) {
+                                if (err) {
+                                    console.log(err);
+                                    console.log("No write -> " + fn);
+                                } else {
+                                    callbackUploadS3(buffer, dstBucket, dstKey, response.ContentType, context);
+                                }
+                            });
+                    })(dstKey);
+                }
+            }
+        }
+    });
+
+    return true;
 }

@@ -5,7 +5,7 @@
     "httpMethod": "GET",
     "headers": null,
     "queryStringParameters": {
-      "image": "libero/imagen/2016/01/22/23081870.jpg"
+      "image": "libero/imagen/2016/01/22/23081870d.jpg"
     },
     "pathParameters": null,
     "stageVariables": null,
