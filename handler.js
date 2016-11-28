@@ -221,7 +221,7 @@ function uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,c
     ];
     s3.getObject(params, function(err, response) {
         if (err) {
-            console.log(err);
+            //console.log(err);
             //console.log('hola');
             var responseErrorImagen = {
                 statusCode: 500,
@@ -267,6 +267,15 @@ function uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,c
                     })(dstKey);
                 }
             }
+            var responseErrorImagen = {
+                statusCode: 200,
+                body: JSON.stringify({
+                    message: 'Imagen cargada',
+                    //input: event,
+                    context : context
+                }),
+            };
+            callback(null,responseErrorImagen);
         }
     });
 
