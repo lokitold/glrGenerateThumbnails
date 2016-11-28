@@ -53,7 +53,22 @@ module.exports.resizeApi = (event, context, callback) => {
 
 
   console.log(JSON.stringify(event));
-  var srcBucket = event.Records[0].s3.bucket.name;
+  console.log(JSON.stringify(context));
+
+
+  //callback(new Error('[404] Not found'));
+  
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: 'Go Serverless v1.0! Your function executed successfully 5!',
+      input: event,
+    }),
+  };
+  callback(null, response);
+  return;
+
+  /*var srcBucket = event.Records[0].s3.bucket.name;
   var srcKey    = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
   countSend = 0;
   countProc = 0;
@@ -82,18 +97,8 @@ module.exports.resizeApi = (event, context, callback) => {
       console.log("Formato no soportado.");
       context.succeed("No se ejecuta nada");
       return false;
-  }
+  }*/
 
-  /*
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully 2!',
-      input: event,
-    }),
-  };
-  callback(null, response);
-  */ 
 };
 
 function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)

@@ -1,38 +1,35 @@
+
 {
-    "Records": [
-        {
-            "eventVersion": "2.0",
-            "eventSource": "aws:s3",
-            "awsRegion": "us-east-1",
-            "eventTime": "2016-11-28T04:03:39.359Z",
-            "eventName": "ObjectCreated:Put",
-            "userIdentity": {
-                "principalId": "AWS:AIDAJ5KU2XIUKIDGRVMKY"
-            },
-            "requestParameters": {
-                "sourceIPAddress": "179.7.214.174"
-            },
-            "responseElements": {
-                "x-amz-request-id": "DDAF87FED7B7F2F0",
-                "x-amz-id-2": "sTc+loSeL5BqSGrFKTZpksWCoYm4upldDuR2mCEh+iS4EYe/UeQf0QFimeMiaPcU"
-            },
-            "s3": {
-                "s3SchemaVersion": "1.0",
-                "configurationId": "3d4e2e55-b1d5-41cb-a369-548aed5935df",
-                "bucket": {
-                    "name": "libero-media-v",
-                    "ownerIdentity": {
-                        "principalId": "A2NV1NQXJVK9VY"
-                    },
-                    "arn": "arn:aws:s3:::libero-media-v"
-                },
-                "object": {
-                    "key": "libero/imagen/2016/01/22/23081870.jpg",
-                    "size": 84034,
-                    "eTag": "99a81f8bf2b4b28adebb82e849d319d2",
-                    "sequencer": "00583BAC9B43BCC3D3"
-                }
-            }
-        }
-    ]
+    "resource": "/resize",
+    "path": "/resize",
+    "httpMethod": "GET",
+    "headers": null,
+    "queryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "accountId": "543745842878",
+        "resourceId": "3diw1w",
+        "stage": "test-invoke-stage",
+        "requestId": "test-invoke-request",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": "543745842878",
+            "cognitoIdentityId": null,
+            "caller": "AIDAJ5KU2XIUKIDGRVMKY",
+            "apiKey": "test-invoke-api-key",
+            "sourceIp": "test-invoke-source-ip",
+            "accessKey": "ASIAJ7MESWCFDKXPAQQQ",
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": "arn:aws:iam::543745842878:user/victor.rojas",
+            "userAgent": "Apache-HttpClient/4.5.x (Java/1.8.0_102)",
+            "user": "AIDAJ5KU2XIUKIDGRVMKY"
+        },
+        "resourcePath": "/resize",
+        "httpMethod": "GET",
+        "apiId": "rbr4j973ka"
+    },
+    "body": null,
+    "isBase64Encoded": false
 }
