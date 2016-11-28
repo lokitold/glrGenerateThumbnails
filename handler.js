@@ -222,8 +222,8 @@ function uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,c
     ];
     s3.getObject(params, function(err, response) {
         if (err) {
-            //console.log(err);
-            console.log('hola');
+            console.log(err);
+            //console.log('hola');
             var responseErrorImagen = {
                 statusCode: 500,
                 body: JSON.stringify({
