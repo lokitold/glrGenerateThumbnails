@@ -1,0 +1,24 @@
+{
+  "name": "resize",
+  "version": "1.0.0",
+  "description": "Generate Thumbnails lambda serverless",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lokitold/glrGenerateThumbnails.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lokitold/glrGenerateThumbnails/issues"
+  },
+  "homepage": "https://github.com/lokitold/glrGenerateThumbnails#readme",
+  "dependencies": {
+    "aws-sdk": "^2.7.7",
+    "fs": "0.0.1-security",
+    "gm": "^1.23.0"
+  }
+}
