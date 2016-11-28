@@ -55,6 +55,12 @@ functions:
     description: resize images libero
     memorySize: 128
     timeout: 30
+  resizeApi:
+    handler: handler.resizeApi
+    role : arn:aws:iam::543745842878:role/lambda_basic_execution
+    description: resize images libero
+    memorySize: 128
+    timeout: 30
     #events:
     #  - s3:
     #      bucket: libero-media-v

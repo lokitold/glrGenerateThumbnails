@@ -41,21 +41,60 @@ module.exports.resize = (event, context, callback) => {
   }
 
   //////////////////////////////////////////////////
-  /* const response = {
+  /* 
+  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
+  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+  */
+  ////////////////////////////////////////////////////7
+};
+
+
+module.exports.resizeApi = (event, context, callback) => {
+
+
+  console.log(JSON.stringify(event));
+  var srcBucket = event.Records[0].s3.bucket.name;
+  var srcKey    = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
+  countSend = 0;
+  countProc = 0;
+  var dstBucket = "libero-media";
+
+  if (srcBucket == dstBucket) {
+      console.error("El bucket destino debe ser diferente al bucket.");
+      context.succeed("Salir");
+      return;
+  }
+
+  // Detectar el tipo de imagen
+  var typeMatch = srcKey.match(/\.([^.]*)$/);
+
+  if (!typeMatch) {
+      console.error('El tipo no coincide con una imagen válida para el key: ' + srcKey);
+      context.succeed("No se procesa");
+      return;
+  }
+
+  var imageType = typeMatch[1].toLowerCase();
+
+  if (imageType == "jpg" || imageType == "jpeg" || imageType == "png") {
+      return uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context);
+  } else {
+      console.log("Formato no soportado.");
+      context.succeed("No se ejecuta nada");
+      return false;
+  }
+
+  /*
+  const response = {
     statusCode: 200,
     body: JSON.stringify({
       message: 'Go Serverless v1.0! Your function executed successfully 2!',
       input: event,
     }),
   };
-
   callback(null, response);
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });*/
-  ////////////////////////////////////////////////////7
+  */ 
 };
-
 
 function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
 {
