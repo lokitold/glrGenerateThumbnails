@@ -48,13 +48,20 @@ module.exports.resizeApi = (event, context, callback) => {
   console.log(JSON.stringify(context));
   // validate parmas image
   var uriImage = event.queryStringParameters.image;
-  uriImage = decodeURI(uriImage); 
+  uriImage = decodeURI(uriImage);
   if (!uriImage.trim()) {
     callback(new Error('params image required'));
   }
   //console.log(JSON.stringify(uriImage));
 
-  var srcBucket = "libero-media-v";
+    //set bucket origin
+    var srcBucket;
+    srcBucket = process.env.S3_BUCKET_ORIGIN;
+    if(!srcBucket){
+        srcBucket = "libero-media-v"
+    }
+    console.log('\n bucket origin ',srcBucket+'\n');
+
   var srcKey    = decodeURIComponent(uriImage.replace(/\+/g, " "));
   countSend = 0;
   countProc = 0;
@@ -68,22 +75,22 @@ module.exports.resizeApi = (event, context, callback) => {
 
   // Detectar el tipo de imagen
   var typeMatch = srcKey.match(/\.([^.]*)$/);
-  
+
   if (!typeMatch) {
       console.error('El tipo no coincide con una imagen válida para el key: ' + srcKey);
       context.succeed("No se procesa");
-      return callback(new Error('El tipo no coincide con una imagen válida para el key: ' + srcKey)); 
+      return callback(new Error('El tipo no coincide con una imagen válida para el key: ' + srcKey));
   }
 
   var imageType = typeMatch[1].toLowerCase();
   //console.log(JSON.stringify(imageType));
-  
+
   if (imageType == "jpg" || imageType == "jpeg" || imageType == "png") {
       uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context);
   } else {
       console.log("Formato no soportado.");
       context.succeed("No se ejecuta nada");
-      return callback(new Error("Formato no soportado.")); 
+      return callback(new Error("Formato no soportado."));
       //return false;
   }
 
@@ -95,11 +102,11 @@ module.exports.resizeApi = (event, context, callback) => {
         context : context
         }),
     };
-  
+
     return callback(null, response);
 
-  
-  
+
+
 
 };
 
@@ -127,8 +134,8 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
                 var item = {"srcBucket":srcBucket, "dstBucket":dstBucket, "srcKey":srcKey, "imageType":imageType};
                 sendSNS(TOPIC_ARN, item,
                  function(data) {
-                  context.succeed("Proceso SNS Lambda: CMS_THUMB_SNS"); 
-                  
+                  context.succeed("Proceso SNS Lambda: CMS_THUMB_SNS");
+
                 });
             } else {
                 for (var k in thumb_sizes) {
@@ -155,7 +162,7 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
                             });
                     })(dstKey);
                 }
-            }     
+            }
         }
     });
 
@@ -183,7 +190,7 @@ function callbackUploadS3(buffer, bucket, dstKey, contentType, context) {
 }
 
 function sendSNS(TopicArn, Message , callback) {
-    
+
     var sns = new aws.SNS();
     sns.publish({
         Message: JSON.stringify(Message),
