@@ -86,8 +86,7 @@ module.exports.resizeApi = (event, context, callback) => {
   //console.log(JSON.stringify(imageType));
 
   if (imageType == "jpg" || imageType == "jpeg" || imageType == "png") {
-      uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,callback);
-      return;
+      return uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,callback);
   } else {
       console.log("Formato no soportado.");
       context.succeed("No se ejecuta nada");
