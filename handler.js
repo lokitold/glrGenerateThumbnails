@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.thumbs = (event, context, callback) => {
+module.exports.resize = (event, context, callback) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({

@@ -49,9 +49,16 @@ provider:
 #  artifact: my-service-code.zip
 
 functions:
-  thumbs:
-    handler: handler.thumbs
+  resize:
+    handler: handler.resize
     role : arn:aws:iam::543745842878:role/lambda_basic_execution
+    events:
+      - s3:
+          bucket: libero-media-v
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: libero/
+            - suffix: .jpg
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

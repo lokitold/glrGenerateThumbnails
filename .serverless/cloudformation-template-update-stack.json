@@ -12,7 +12,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/glrGenerateThumbnails/dev/1480296460845-2016-11-28T01:27:40.845Z/glrGenerateThumbnails.zip"
+          "S3Key": "serverless/glrGenerateThumbnails/dev/1480297824268-2016-11-28T01:50:24.268Z/glrGenerateThumbnails.zip"
         },
         "FunctionName": "glrGenerateThumbnails-dev-thumbs",
         "Handler": "handler.thumbs",
