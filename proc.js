@@ -2,7 +2,7 @@
  * Created by victor on 29/11/16.
  * https://www.npmjs.com/package/aws-lambda-invoke
  * http://stackoverflow.com/questions/9437581/node-js-amazon-s3-how-to-iterate-through-all-files-in-a-bucket
- * resize bucket libero-media-v
+ * resize bucket libero-media-v with lambda asynchronous
  * ejecutar :  node proc.js 
  */
 var aws = require('aws-sdk');
@@ -15,10 +15,16 @@ var s3 = new aws.S3();
 var event = require('./event.json');
 var srcBucket = event.Records[0].s3.bucket.name;
 
+prefix = process.argv[2];
+if(!prefix){
+	console.log('Missing prefix argument');	
+}
+
 
 var params = {
     Bucket: srcBucket,
-    Prefix: 'libero/imagen/2016/01/01/',
+    //Prefix: 'libero/imagen/2016/01/02/',
+    Prefix: prefix,
     EncodingType: 'url',
     //Delimiter : 'imagen/2010/05/05'
    // Sufix: '.jpg'
@@ -39,9 +45,9 @@ function s3ListObjects(params) {
 				var key = entry.Key;
 				validationIsImage = (/\.(jpg|png)$/i).test(key)
 				if(validationIsImage == true){
-					console.log(key);
 					event.Records[0].s3.object.key = key;
 					lambda.invokeAsync('glrGenerateThumbnails-dev-resize', event).then(result => {
+						console.log(key);
 					    console.log(result);
 					});
 				}

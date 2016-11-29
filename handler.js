@@ -130,7 +130,7 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
             console.log(err);
         } else {
             var kb = response.ContentLength / 1024;
-            if (kb > 800) {
+            if (kb > 2400) {
                 var item = {"srcBucket":srcBucket, "dstBucket":dstBucket, "srcKey":srcKey, "imageType":imageType};
                 sendSNS(TOPIC_ARN, item,
                  function(data) {
@@ -234,7 +234,7 @@ function uploadStaticImageApi(srcBucket, dstBucket, srcKey, imageType, context,c
             callback(null,responseErrorImagen);
         } else {
             var kb = response.ContentLength / 1024;
-            if (kb > 800) {
+            if (kb > 2400) {
                 var item = {"srcBucket":srcBucket, "dstBucket":dstBucket, "srcKey":srcKey, "imageType":imageType};
                 sendSNS(TOPIC_ARN, item,
                     function(data) {
