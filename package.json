@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lokitold/glrGenerateThumbnails#readme",
   "dependencies": {
+    "aws-lambda-invoke": "^3.0.0",
     "aws-sdk": "^2.7.7",
     "fs": "0.0.1-security",
     "gm": "^1.23.0"
