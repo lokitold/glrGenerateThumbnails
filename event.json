@@ -20,14 +20,14 @@
                 "s3SchemaVersion": "1.0",
                 "configurationId": "3d4e2e55-b1d5-41cb-a369-548aed5935df",
                 "bucket": {
-                    "name": "libero-media-v",
+                    "name": "glr-media-v",
                     "ownerIdentity": {
                         "principalId": "A2NV1NQXJVK9VY"
                     },
                     "arn": "arn:aws:s3:::libero-media-v"
                 },
                 "object": {
-                    "key": "libero/imagen/2016/01/22/23081870.jpg",
+                    "key": "libero/imagen/2016/01/01/impreso-151939-lina020116_01.jpg",
                     "size": 84034,
                     "eTag": "99a81f8bf2b4b28adebb82e849d319d2",
                     "sequencer": "00583BAC9B43BCC3D3"
