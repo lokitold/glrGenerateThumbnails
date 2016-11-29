@@ -3,7 +3,7 @@
  * https://www.npmjs.com/package/aws-lambda-invoke
  * http://stackoverflow.com/questions/9437581/node-js-amazon-s3-how-to-iterate-through-all-files-in-a-bucket
  * resize bucket libero-media-v with lambda asynchronous
- * ejecutar :  node proc.js 
+ * ejecutar :  node proc.js {prefix}
  */
 var aws = require('aws-sdk');
 aws.config.update({region:'us-east-1'});
