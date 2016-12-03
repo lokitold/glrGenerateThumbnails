@@ -117,13 +117,15 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
         Key: srcKey
     };
     var thumb_sizes = [
-        {key:"medium", width: 439, height: 247},
+        //{key:"xsmall", width: 71,  height: 40},
+        {key:"thumb",  width: 88,  height: 50},
+        {key:"thumb2",  width: 143,  height: 80},
         {key:"small",  width: 224, height: 126},
+        {key:"299x179",  width: 299, height: 179},
+        {key:"medium", width: 439, height: 247},
         {key:"normal", width: 604, height: 340},
         {key:"large",  width: 825, height: 464},
-        {key:"xlarge", width: 1200,height: 675},
-        {key:"thumb",  width: 88,  height: 50},
-        {key:"xsmall", width: 71,  height: 40}
+        {key:"xlarge", width: 1200,height: 675}
     ];
     s3.getObject(params, function(err, response) {
         if (err) {
@@ -179,7 +181,7 @@ function callbackUploadS3(buffer, bucket, dstKey, contentType, context) {
             console.log("Se cargo " +bucket+'/'+ dstKey + " " + contentType);
         }
         if (countProc == countSend) {
-            if (countProc == 7) {
+            if (countProc == 9) {
                 context.succeed("Proceso completado");
             } else {
                 console.log("Se ejecutó "+countProc+" de 7 imágenes");
