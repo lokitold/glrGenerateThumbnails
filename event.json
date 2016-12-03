@@ -27,7 +27,7 @@
                     "arn": "arn:aws:s3:::libero-media-v"
                 },
                 "object": {
-                    "key": "libero/imagen/2016/01/01/impreso-151939-lina020116_01.jpg",
+                    "key": "libero/portada/2016/12/01/Noticia-167944-ezequiel-lavezzi-argentina.jpg",
                     "size": 84034,
                     "eTag": "99a81f8bf2b4b28adebb82e849d319d2",
                     "sequencer": "00583BAC9B43BCC3D3"
