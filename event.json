@@ -4,33 +4,33 @@
             "eventVersion": "2.0",
             "eventSource": "aws:s3",
             "awsRegion": "us-east-1",
-            "eventTime": "2016-11-28T04:03:39.359Z",
+            "eventTime": "2016-12-05T21:01:38.716Z",
             "eventName": "ObjectCreated:Put",
             "userIdentity": {
                 "principalId": "AWS:AIDAJ5KU2XIUKIDGRVMKY"
             },
             "requestParameters": {
-                "sourceIPAddress": "179.7.214.174"
+                "sourceIPAddress": "200.37.36.40"
             },
             "responseElements": {
-                "x-amz-request-id": "DDAF87FED7B7F2F0",
-                "x-amz-id-2": "sTc+loSeL5BqSGrFKTZpksWCoYm4upldDuR2mCEh+iS4EYe/UeQf0QFimeMiaPcU"
+                "x-amz-request-id": "FC257F20914AD434",
+                "x-amz-id-2": "vlNldmkHSvCdM0RowFHQYKowrgBm97tkFGYxvjLl25OQHdZ1PkN/CPi2fYBbfUKl"
             },
             "s3": {
                 "s3SchemaVersion": "1.0",
-                "configurationId": "3d4e2e55-b1d5-41cb-a369-548aed5935df",
+                "configurationId": "e8307d0b-662d-4d58-a9e4-6681b434219e",
                 "bucket": {
-                    "name": "glr-media-v",
+                    "name": "glr-mediapre-v",
                     "ownerIdentity": {
                         "principalId": "A2NV1NQXJVK9VY"
                     },
-                    "arn": "arn:aws:s3:::libero-media-v"
+                    "arn": "arn:aws:s3:::glr-mediapre-v"
                 },
                 "object": {
-                    "key": "libero/portada/2016/12/01/Noticia-167944-ezequiel-lavezzi-argentina.jpg",
-                    "size": 84034,
-                    "eTag": "99a81f8bf2b4b28adebb82e849d319d2",
-                    "sequencer": "00583BAC9B43BCC3D3"
+                    "key": "libero/imagen/2016/12/05/chamba-laravel.jpg",
+                    "size": 117697,
+                    "eTag": "db8bad22546dde1a15725e01562b90d3",
+                    "sequencer": "005845D5B29B1633C4"
                 }
             }
         }
