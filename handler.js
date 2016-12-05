@@ -16,7 +16,10 @@ module.exports.resize = (event, context, callback) => {
   var srcKey    = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
   countSend = 0;
   countProc = 0;
-  var dstBucket = "libero-media";
+  var dstBucket = "libero-media-pre";
+  if(srcBucket == 'glr-media-v'){
+      dstBucket = "libero-media";
+  }
 
   if (srcBucket == dstBucket) {
       console.error("El bucket destino debe ser diferente al bucket.");
