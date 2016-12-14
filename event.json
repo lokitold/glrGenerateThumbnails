@@ -20,7 +20,7 @@
                 "s3SchemaVersion": "1.0",
                 "configurationId": "e8307d0b-662d-4d58-a9e4-6681b434219e",
                 "bucket": {
-                    "name": "glr-mediapre-v",
+                    "name": "glr-media-v",
                     "ownerIdentity": {
                         "principalId": "A2NV1NQXJVK9VY"
                     },

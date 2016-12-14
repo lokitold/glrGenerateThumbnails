@@ -128,7 +128,9 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
         {key:"medium", width: 439, height: 247},
         {key:"normal", width: 604, height: 340},
         {key:"large",  width: 825, height: 464},
-        {key:"xlarge", width: 1200,height: 675}
+        {key:"xlarge", width: 1200,height: 675},
+        {key:"impreso", width: 268,height: 296},
+        {key:"diablita", width: 260,height: 390}
     ];
     s3.getObject(params, function(err, response) {
         if (err) {
