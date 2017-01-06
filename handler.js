@@ -1,4 +1,5 @@
 'use strict';
+//https://www.smashingmagazine.com/2015/06/efficient-image-resizing-with-imagemagick/
 
 var aws = require('aws-sdk');
 var s3 = new aws.S3({ apiVersion: '2006-03-01' });
@@ -155,7 +156,7 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
                         countSend++;
                         ima.resize(null, thumb_sizes[k].height)
                             .gravity('Center')
-                            .quality(98)
+                            .quality(90)
                             .borderColor("rgb(0,0,0)")
                             .border(300, 0)
                             .crop(thumb_sizes[k].width, thumb_sizes[k].height)

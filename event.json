@@ -24,10 +24,10 @@
                     "ownerIdentity": {
                         "principalId": "A2NV1NQXJVK9VY"
                     },
-                    "arn": "arn:aws:s3:::glr-mediapre-v"
+                    "arn": "arn:aws:s3:::glr-media-v"
                 },
                 "object": {
-                    "key": "libero/imagen/2016/12/05/chamba-laravel.jpg",
+                    "key": "libero/banner_tag_equipos_al_1.jpg",
                     "size": 117697,
                     "eTag": "db8bad22546dde1a15725e01562b90d3",
                     "sequencer": "005845D5B29B1633C4"
