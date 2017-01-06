@@ -156,7 +156,7 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
                         countSend++;
                         ima.resize(null, thumb_sizes[k].height)
                             .gravity('Center')
-                            .quality(82)
+                            .quality(80)
                             .borderColor("rgb(0,0,0)")
                             .border(300, 0)
                             .crop(thumb_sizes[k].width, thumb_sizes[k].height)
@@ -178,7 +178,7 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
 }
 
 function callbackUploadS3(buffer, bucket, dstKey, contentType, context) {
-    s3.putObject({ Bucket: bucket, Key: dstKey, Body: buffer, ContentType: contentType },
+    s3.putObject({ Bucket: bucket, Key: dstKey, Body: buffer, ContentType: contentType , CacheControl  : 'max-age=2592000'},
      function(err, data) {
         countProc++;
         if (err) {
