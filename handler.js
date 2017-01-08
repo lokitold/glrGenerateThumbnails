@@ -150,8 +150,8 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
                     var dstKey = thumb_sizes[k].key + '/' + srcKey;
                     (function(dstKey) {
                         var ima = gm(response.Body);
-                        if (imageType == "png") {
-                            ima.flatten().setFormat("jpg");
+                        if (imageType == "jpg" || imageType == "jpeg") {
+                            ima.flatten().setFormat("png");
                         }
                         countSend++;
                         ima.resize(null, thumb_sizes[k].height)
@@ -178,6 +178,19 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
 }
 
 function callbackUploadS3(buffer, bucket, dstKey, contentType, context) {
+
+    // set format png
+    var typeMatch = dstKey.match(/\.([^.]*)$/);
+    var imageType = typeMatch[1].toLowerCase();
+    if (imageType == "jpg"  ) {
+        dstKey = dstKey.replace(/^(.*\.)[jJ][pP][gG]$/, '$1') + "png";
+    };
+    if (imageType == "jpeg" ) {
+        dstKey = dstKey.replace(/^(.*\.)[jJ][pP][eE][gG]$/, '$1') + "png";
+    };
+    contentType = 'image/png';
+    //
+
     s3.putObject({ Bucket: bucket, Key: dstKey, Body: buffer, ContentType: contentType , CacheControl  : 'max-age=2592000'},
      function(err, data) {
         countProc++;
