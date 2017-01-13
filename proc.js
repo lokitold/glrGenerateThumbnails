@@ -43,7 +43,7 @@ function s3ListObjects(params) {
             cant = 0;
 			contents.forEach(function(entry) {
 				var key = entry.Key;
-				validationIsImage = (/\.(jpg|png)$/i).test(key)
+				validationIsImage = (/\.(jpg|png|jpeg)$/i).test(key)
 				if(validationIsImage == true){
 					event.Records[0].s3.object.key = key;
 					lambda.invokeAsync('glrGenerateThumbnails-dev-resize', event).then(result => {
