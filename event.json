@@ -24,10 +24,10 @@
                     "ownerIdentity": {
                         "principalId": "A2NV1NQXJVK9VY"
                     },
-                    "arn": "arn:aws:s3:::glr-mediapre-v"
+                    "arn": "arn:aws:s3:::glr-media-v"
                 },
                 "object": {
-                    "key": "libero/imagen/2017/01/11/impresa-lina11011701_0.jpeg",
+                    "key": "libero/imagen/2017/04/11/noticia-nali-15-bauza-sdarc-11595313.jpeg",
                     "size": 117697,
                     "eTag": "db8bad22546dde1a15725e01562b90d3",
                     "sequencer": "005845D5B29B1633C4"

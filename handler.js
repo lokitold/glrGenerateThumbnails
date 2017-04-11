@@ -150,7 +150,7 @@ function uploadStaticImage(srcBucket, dstBucket, srcKey, imageType, context)
                     var dstKey = thumb_sizes[k].key + '/' + srcKey;
                     (function(dstKey) {
                         var ima = gm(response.Body);
-                        if (imageType == "png") {
+                        if (imageType == "png" || imageType == "jpeg" ) {
                             ima.flatten().setFormat("jpg");
                         }
                         countSend++;
